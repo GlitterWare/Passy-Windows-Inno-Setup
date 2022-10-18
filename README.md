@@ -15,4 +15,4 @@ Format for command line arguments is `/<name>[=<value>]` (without angle brackets
 A list of Inno Setup command line arguments can be found [here](https://jrsoftware.org/ishelp/index.php?topic=setupcmdline).
 
 Command line arguments specific to this setup:
-- UninstallerUserDataRemove - Default is `false`, if set to `true`, all `Passy` directories containing user data inside every user's `Documents` directory will be erased during uninstall.
+- `UninstallerUserDataRemove` - Default is `false`, if set to `true`, all `Passy` directories containing user data inside every user's `Documents` directory will be erased during uninstall.
