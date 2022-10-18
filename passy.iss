@@ -42,6 +42,9 @@ Source: "Release\url_launcher_windows_plugin.dll"; DestDir: "{app}"; Flags: igno
 Source: "Release\data\*"; DestDir: "{app}\data"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
+[UninstallDelete]
+Type: files; Name: "{app}\innosetup.ini"
+
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
@@ -49,3 +52,56 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
+[INI]
+Filename: "{app}\innosetup.ini"; Section: "Info"; Key: "setupVersion"; String: "1.0.0"
+
+[Code]
+procedure ListFolders(const Directory: string; Folders: TStrings);
+var
+  FindRec: TFindRec;
+begin
+  Folders.Clear;
+  if FindFirst(ExpandConstant(Directory + '\*'), FindRec) then
+  try
+    repeat
+      if FILE_ATTRIBUTE_DIRECTORY <> 0 then
+        Folders.Add(FindRec.Name);
+    until
+      not FindNext(FindRec);
+  finally
+    FindClose(FindRec);
+  end;
+end;
+procedure CurStepChanged(CurStep: TSetupStep);
+var
+_valStr : string;
+begin  
+  if CurStep = ssPostInstall then begin    
+    _valStr := ExpandConstant('{param:UninstallerUserDataRemove|false}');
+    if _valStr = 'true' then
+      SetIniBool('Uninstaller', 'userDataRemove', True, ExpandConstant('{app}\innosetup.ini'))
+    else
+      SetIniBool('Uninstaller', 'userDataRemove', False, ExpandConstant('{app}\innosetup.ini'));
+  end;
+end;
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+var
+_userFolders : TStrings;
+var
+_curUser : Integer;
+begin
+  if CurUninstallStep = usUninstall then begin
+    _userFolders := TStringList.Create;
+    if FileExists(ExpandConstant('{app}\innosetup.ini')) then begin        
+      if GetIniBool('Uninstaller', 'userDataRemove', False, ExpandConstant('{app}\innosetup.ini')) then begin
+        ListFolders('C:\Users', _userFolders);
+        repeat begin
+          DelTree(ExpandConstant('C:\Users\' + _userFolders[_curUser] + '\Documents\Passy'), True, True, True);
+          _curUser := _curUser + 1;
+        end;
+        until _curUser = _userFolders.Count;
+        DelTree(ExpandConstant('{userdocs}\Passy'), True, True, True);          
+      end;
+    end;
+  end;
+end; 
