@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Passy"
-#define MyAppVersion "v1.0.6"
+#define MyAppVersion "v1.1.1"
 #define MyAppPublisher "GlitterWare"
 #define MyAppURL "https://glitterware.github.io/Passy"
 #define MyAppExeName "passy.exe"
