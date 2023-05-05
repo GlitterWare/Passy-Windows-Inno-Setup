@@ -7,7 +7,7 @@
 #define MyAppPublisher "GlitterWare"
 #define MyAppURL       "https://glitterware.github.io/Passy"
 #define MyAppExeName   "passy.exe"
-#define CStartYear     "2017" 
+#define CStartYear     "2022" 
 #define CurrentYear    GetDateTimeString('yyyy','','')
 
 [Setup]
