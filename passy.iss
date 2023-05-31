@@ -60,6 +60,9 @@ Source: "Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Release\flutter_windows.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Release\url_launcher_windows_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Release\data\*"; DestDir: "{app}\data"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Release\passy_cli.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Release\passy_cli_native_messaging.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Release\passy_cli_native_messaging.json"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [UninstallDelete]
