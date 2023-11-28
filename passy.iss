@@ -36,6 +36,7 @@ AppUpdatesURL={#MyAppURL}
 
 WizardStyle=modern
 UsePreviousLanguage=no
+ShowLanguageDialog=yes
 
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
