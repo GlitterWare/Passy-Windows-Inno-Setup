@@ -57,13 +57,15 @@ Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Release\flutter_windows.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Release\url_launcher_windows_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Release\data\*"; DestDir: "{app}\data"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Release\argon2.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Release\dargon2_flutter_desktop_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Release\flutter_windows.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Release\passy_cli.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Release\passy_cli_native_messaging.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Release\passy_cli_native_messaging.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Release\url_launcher_windows_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [UninstallDelete]
